@@ -12,6 +12,7 @@ import cors from "cors";
 import globalErrorHandler from "./middleware/globalErrorHandler";
 import { userRoute } from "./modules/user/user.route";
 import config from "./config/index";
+import { issuesRoute } from "./modules/issues/issues.route";
 
 
       
@@ -39,6 +40,7 @@ res.status(200).json({
 
 app.use("/api/auth",authRoute)
 app.use("/api/users", userRoute);
+app.use("/api/issues", issuesRoute);
 app.use(globalErrorHandler);
 
 export default app;
