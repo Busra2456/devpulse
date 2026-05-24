@@ -25,7 +25,7 @@ await pool.query(`
   description TEXT NOT NULL,
   type TEXT CHECK (type IN ('bug','feature_request')),
   status TEXT CHECK (status IN ('open','in_progress','resolved')) DEFAULT 'open',
-  reporter_id INT REFERENCES users(id) ON DELETE CASCADE,
+  reporter_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
 )

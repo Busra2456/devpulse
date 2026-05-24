@@ -4,11 +4,15 @@ import type { IUser } from "./user.interface";
 
 const createUserIntoDB = async(payLoad : IUser)=>{
       const {name,email,password,role} = payLoad;
+        if(password.length < 6){
+         throw new Error("Password must be at least 6 characters");
+      }
+
       const hashPassword = await bcrypt.hash(password,10)
       // console.log(hashPassword)
        const result = await pool.query(`
             INSERT INTO users(name,email,password,role) VALUES($1,$2,$3,
-            COALESCE($4,'contributor')) RETURNING *`,[name,email,hashPassword,role]);
+            COALESCE($4,'contributor')) RETURNING id,name,email,role,created_at,updated_at`,[name,email,hashPassword,role]);
             delete result.rows[0].password;
             return result;
 

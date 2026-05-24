@@ -5,12 +5,15 @@ import { initDB } from "./db/index";
 
 const main= async() =>{
      await initDB();
-     app.listen(config.port, () => {
+     if (process.env.NODE_ENV !== 'production') {
+    app.listen(config.port, () => {
       console.log(`Example app listening on port ${config.port}`);
     });
-  
+  }
 
 
 
 }
 main()
+  
+export default app;

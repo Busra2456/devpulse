@@ -19,7 +19,6 @@ import { issuesRoute } from "./modules/issues/issues.route";
 const app : Application = express();
 app.use(cookieParser())
 app.use(express.json());
-app.use(express.text());
 app.use(express.urlencoded({extended : true}));
 app.use(logger);
 
